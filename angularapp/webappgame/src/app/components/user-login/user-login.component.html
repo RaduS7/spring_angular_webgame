@@ -1,0 +1,53 @@
+<h2 class="mb-3"> Login/Create Account </h2>
+<div *ngIf="token === null; else elseBlock">
+    <div style="display: flex; flex-direction: row;">
+        <button (click)="onClickSignIn()" class="btn btn-success mt-3 rounded-0 btn-dark" type="button"
+            [disabled]="signIn==true">Sign
+            in</button>
+        <button (click)="onClickSignUp()" class="btn btn-success mt-3 rounded-0 btn-dark" type="button"
+            [disabled]="signIn==false">Sign
+            up</button>
+    </div>
+
+    <form (ngSubmit)="onSubmitLogin()">
+        <div *ngIf="signIn==false" class="form-group mt-3">
+            <label>Name</label>
+            <input type="text" class="form-control" id="name" [(ngModel)]="player.name" name="name"
+                placeholder="Enter name">
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Email</label>
+            <input type="text" class="form-control" id="email" [(ngModel)]="player.email" name="email"
+                placeholder="Enter email">
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Password</label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password"
+                placeholder="Enter password">
+        </div>
+
+        <button class="btn btn-success mt-3" type="submit">{{(signIn)?"Sign In":"Sign Up"}}</button>
+    </form>
+
+</div>
+
+<ng-template #elseBlock>
+    <h3 class="text-success">CONNECTED!</h3>
+    <form (ngSubmit)="onSubmitLogout()">
+        <div class="form-group mt-3">
+            <label>Name</label>
+            <input id="disabledInput" type="text" class="form-control text-secondary" id="name"
+                [(ngModel)]="player.name" name="name" placeholder="Enter name" disabled>
+        </div>
+
+        <div class="form-group mt-3">
+            <label>Email</label>
+            <input id="disabledInput" type="text" class="form-control text-secondary" id="email"
+                [(ngModel)]="player.email" name="email" placeholder="Enter email" disabled>
+        </div>
+
+        <button class="btn btn-danger mt-3" type="submit">Log out</button>
+    </form>
+</ng-template>

@@ -1,0 +1,8 @@
+<div style="display: flex; justify-content: center; flex-direction: column;">
+    <h4>Move the player with the cursor and try to get as many enemies as you can! </h4>
+    <button (click)="onClick()"
+        class="btn {{(this.sk==false)?'btn-info':'btn-danger'}}">{{(this.sk==false)?"Start Game!":"Stop Game!"}}</button>
+</div>
+<div #gameDiv style="flex: auto; flex-wrap: wrap;" class="py-2">
+
+</div>

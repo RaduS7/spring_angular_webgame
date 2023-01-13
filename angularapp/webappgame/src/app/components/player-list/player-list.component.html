@@ -1,0 +1,31 @@
+<h2> Player List </h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>High Score</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let player of players">
+            <td> {{player.name}} </td>
+            <td> {{player.email}} </td>
+            <td> {{player.score}} </td>
+            <td>
+                <button [disabled]="(this.playerUser.role == 'PLAYER' && this.player.id!=this.playerUser.id)"
+                    (click)="updateStats(player.id)" class="btn btn-primary"> Stats </button>
+            </td>
+            <td>
+                <button [disabled]="(this.playerUser.role == 'PLAYER' && this.player.id!=this.playerUser.id)"
+                    (click)="updatePlayer(player.id)" class="btn btn-info"> Profile </button>
+            </td>
+            <td>
+                <button
+                    [disabled]="(this.playerUser.role=='PLAYER' || (this.playerUser.id == this.player.id && this.playerUser.role=='ADMIN'))"
+                    (click)="deletePlayer(player.id)" class="btn btn-danger"> Delete </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
